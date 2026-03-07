@@ -4,7 +4,8 @@ ver 6.4 未有新的更新 直接用最新release即可。
 <img width="1568" height="1018" alt="image" src="https://github.com/user-attachments/assets/0cf2eab7-2fb2-4f17-a641-86dab5a205aa" />
 
 
-- **2025年11月15日再测试看，改为120帧左右看起来是稳定了，不建议再上调**
+- **2026年3月6日，建议上线改为120帧，不建议再上调**
+  
 - **最近回归原神，清理了一下代码稍微更新了下**
 
 **若您觉得好用的话，请给winTEuser老哥的版本
