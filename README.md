@@ -8,6 +8,11 @@ ver 6.4 未有新的更新 直接用最新release即可。
   
 - **最近回归原神，清理了一下代码稍微更新了下**
 
+**6.4版本加入新的选项**
+- 打开文件的显示隐藏文件选项找到fps_config.ini
+- 若缺少hide项启动游戏会自动写入hide=0(显示窗口)
+- 修改hide=1后不会显示窗口直接启动游戏
+
 **若您觉得好用的话，请给winTEuser老哥的版本
 （[点我进入](https://github.com/winTEuser/Genshin_StarRail_fps_unlocker/releases)），点上star进行支持**
  - **要是觉得本项目挺好用的话，也可以点个star支持一下**
