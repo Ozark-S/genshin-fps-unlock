@@ -15,6 +15,8 @@
 
 std::string GamePath{};
 int FpsValue = FPS_TARGET;
+int HideValue = 0;
+bool ShowConsole = true;
 
 DWORD StartPriority = 0;
 const std::vector<DWORD> PrioityClass = {
@@ -244,12 +246,22 @@ bool WriteConfig(std::string GamePath, int fps)
     std::string content{};
     content = "[Setting]\n";
     content += "Path=" + GamePath + "\n";
-    content += "FPS=" + std::to_string(fps);
+    content += "FPS=" + std::to_string(fps) + "\n";
+    content += "hide=" + std::to_string(HideValue);
 
     DWORD written = 0;
     WriteFile(hFile, content.data(), content.size(), &written, nullptr);
     CloseHandle(hFile);
     return true;
+}
+
+void ApplyConsoleVisibility()
+{
+    HWND hConsole = GetConsoleWindow();
+    if (!hConsole)
+        return;
+
+    ShowWindow(hConsole, ShowConsole ? SW_SHOW : SW_HIDE);
 }
 
 //Hotpatch - 注入shellcode到游戏进程
@@ -367,6 +379,17 @@ void LoadConfig()
 
     GamePath = reader.Get("Setting", "Path", "");
     FpsValue = reader.GetInteger("Setting", "FPS", FpsValue);
+    const std::string hideConfig = reader.Get("Setting", "hide", "");
+    if (hideConfig.empty())
+    {
+        HideValue = 0;
+        WriteConfig(GamePath, FpsValue);
+    }
+    else
+    {
+        HideValue = reader.GetInteger("Setting", "hide", HideValue);
+    }
+    ShowConsole = (HideValue == 0);
 
     if (GetFileAttributesA(GamePath.c_str()) == INVALID_FILE_ATTRIBUTES)
     {
@@ -428,7 +451,8 @@ DWORD __stdcall Thread1(LPVOID p)
 int main(int argc, char** argv)
 {
     std::atexit([] {
-        system("pause");
+        if (ShowConsole)
+            system("pause");
     });
 
     SetConsoleTitleA("");
@@ -442,6 +466,7 @@ int main(int argc, char** argv)
 
     // 读取配置
     LoadConfig();
+    ApplyConsoleVisibility();
     int TargetFPS = FpsValue;
     std::string ProcessPath = GamePath;
     std::string ProcessDir{};
