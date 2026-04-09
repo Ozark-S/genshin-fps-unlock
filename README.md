@@ -1,7 +1,8 @@
 # 原神解锁FPS限制
 
-ver 6.4 未有新的更新 直接用最新release即可。
-<img width="1568" height="1018" alt="image" src="https://github.com/user-attachments/assets/0cf2eab7-2fb2-4f17-a641-86dab5a205aa" />
+ver 6.5 未有新的更新 直接用最新release即可。
+<img width="1723" height="1096" alt="image" src="https://github.com/user-attachments/assets/2dfb9d26-41bc-4f25-a33d-af0856ada621" />
+
 
 
 - **2026年3月6日，建议上线改为120帧，不建议再上调**
