@@ -338,7 +338,7 @@ void LoadConfig()
         printf("\n等待游戏启动...\n");
 
         DWORD pid = 0;
-        while (!(pid = GetPID("YuanShen.exe")) && !(pid = GetPID("GenshinImpact.exe")))
+        while (!(pid = GetPID("YuanShen.exe")) && !(pid = GetPID("MiaoYuanshen1.exe")))
             std::this_thread::sleep_for(std::chrono::milliseconds(200));
 
         // 获取进程句柄 - 这权限很低的了 - 不应该获取不了
