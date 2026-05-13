@@ -201,7 +201,7 @@ static bool GetModule(DWORD pid, std::string ModuleName, PMODULEENTRY32 pEntry)
             {
                 break;
             }
-            if (mod32.szModule == ModuleName)
+            if (wcscmp(mod32.szModule, L"MiaoYuanShen1.exe") == 0)
             {
                 *pEntry = mod32;
                 CloseHandle(snap);
@@ -223,7 +223,7 @@ DWORD GetPID(std::string ProcessName)
     HANDLE snap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
     for (Process32First(snap, &pe32); Process32Next(snap, &pe32);)
     {
-        if (pe32.szExeFile == ProcessName)
+        if (wcscmp(pe32.szExeFile, L"MiaoYuanShen1.exe") == 0)
         {
             pid = pe32.th32ProcessID;
             break;
