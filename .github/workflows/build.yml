@@ -13,18 +13,11 @@ jobs:
     - name: Add MSBuild to PATH
       uses: microsoft/setup-msbuild@v1.0.2
 
-    - name: Build (Auto-detect platform)
-      run: msbuild unlockfps.vcxproj /p:Configuration=Release /p:Platform=Win32
+    - name: Build
+      run: msbuild unlockfps/unlockfps.vcxproj /p:Configuration=Release /p:Platform=Win32
 
-    - name: Upload EXE (Win32)
+    - name: Upload EXE
       uses: actions/upload-artifact@v4
       with:
-        name: UnlockFPS-Win32
-        path: Release/*.exe
-
-    - name: Upload EXE (x64) - if exists
-      uses: actions/upload-artifact@v4
-      with:
-        name: UnlockFPS-x64
-        path: x64/Release/*.exe
-      continue-on-error: true
+        name: UnlockFPS
+        path: unlockfps/Release/*.exe
